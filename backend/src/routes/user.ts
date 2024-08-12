@@ -36,7 +36,8 @@ userRouter.post('/signup', (async c => {
             token: token
         })
     } catch (e) {
-
+        console.log(e)
+        c.status(404)
         return c.json({
             msg: 'User exists',
         })
@@ -73,7 +74,8 @@ userRouter.post('/signin', (async c => {
             })
         }
         const jwt = await sign({id: user.id}, c.env.JWT_SECRET);
-        return c.json({jwt});
+        return c.json({
+            token :jwt});
     } catch (e) {
         return c.json({
             msg: 'Authentication failed',
