@@ -1,32 +1,37 @@
+import {Link} from "react-router-dom";
+
 interface BlogCardProps {
+    id:string,
     title: string,
     content: string,
     authorName: string,
     publishedDate: string,
 }
 
-export const BlogCard = ({title, content, authorName, publishedDate}: BlogCardProps) => {
+export const BlogCard = ({id,title, content, authorName, publishedDate}: BlogCardProps) => {
     return (
-        <div className={"p-4 border-b-2 border-b-slate-100"}>
-            <div className={"flex items-center  gap-2 "}>
-                <div>
-                    <Avatar authorName={"Swayam Agrahari"}/>
-                </div>
+        <Link to={`/blog/${id}`}>
+            <div className={"p-4 border-b-2 border-b-slate-100 "}>
+                <div className={"flex items-center  gap-2  "}>
+                    <div>
+                        <Avatar authorName={authorName}/>
+                    </div>
 
-                <div className={"text-gray-900"}>
-                    {authorName}
+                    <div className={"text-gray-900"}>
+                        {authorName}
+                    </div>
+                    <div>
+                        <Circle/>
+                    </div>
+                    <div className={"opacity-60"}>
+                        {publishedDate}
+                    </div>
                 </div>
-                <div>
-                    <Circle/>
-                </div>
-                <div className={"opacity-60"}>
-                    {publishedDate}
-                </div>
+                <div className={"mt-4 text-xl font-extrabold"}>{title}</div>
+                <div className={"mt-2"}>{content.length > 40 ? content.slice(0, 150) + "..." : content}</div>
+                <div className={"mt-2 opacity-60"}>{Math.floor(content.length / 100) + " min read"}</div>
             </div>
-            <div className={"mt-4 text-xl font-extrabold"}>{title}</div>
-            <div className={"mt-2"}>{content.length > 40 ? content.slice(0,150) + "..." : content}</div>
-            <div className={"mt-2 opacity-60"}>{Math.floor(content.length / 100) + " min read"}</div>
-        </div>
+        </Link>
     )
 }
 
@@ -36,7 +41,7 @@ function Circle() {
     )
 }
 
-function Avatar({authorName}: { authorName: string }) {
+export function Avatar({authorName}: { authorName: string }) {
     const initials = authorName.split(" ");
     const initial = initials[0][0] + initials[1][0];
     return (
