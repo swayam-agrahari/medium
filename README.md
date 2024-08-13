@@ -2,6 +2,8 @@
 
 This project is a clone of Medium built using modern technologies and best practices. The stack chosen aims to provide a seamless and scalable experience for both development and deployment.
 
+## Hosted on : [https://medium-gilt.vercel.app/](https://medium-gilt.vercel.app/)
+
 ## Tech Stack
 
 - **Frontend**: [React](https://reactjs.org/)
